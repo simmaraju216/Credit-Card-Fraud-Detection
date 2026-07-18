@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--da.html-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCFD</title>
+    <!-- bootstrap and tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- css file -->
+    <link rel="stylesheet" href="../static/app.css">
+    <link rel="stylesheet" href="../static/preloader.css">
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMBhk5lN8A8QXBbLBmXOpzNfuLGdauyPa5G3V0F" crossorigin="anonymous">
+
+    <!--GOOGLE FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="loader">
+        <h1 class="counter">0</h1>
+
+        <div class="site-teaser">
+            <span>use headphone for better experience</span>
+        </div>
+
+        <div class="circles">
+            <div class="circle circle-outer"></div>
+            <div class="circle circle-inner"></div>
+            <div class="circle circle-inner-rotator"></div>
+            <div class="block"></div>
+        </div>
+    </div>
+
+    <div class="containerA">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand roboto-thin" href="#">Credit Card Fraud Detection</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link slide roboto-light" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link slide roboto-light" href="/admin">Model</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+        <section class="home-section" id="home">
+            <div class="home d-flex container">
+                <div class="ccfd">
+                    <div class="delius-regular ">
+                        <div class="head">Credit Card</div>
+                        <div class="head">Fraud Detection</div>
+                    </div>
+                    <div class="subhead roboto-thin">
+                        This is a web-application for Credit card fraud detection with machine learning approach in flask.
+                    </div>
+                </div>
+                <div class="parallax-container" id="parallax-container">
+                    <div class="parallax-image" id="parallax-image" aria-hidden="true"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Administator -->
+        <section class="admin-section">
+            <div class="admin container">
+                <div class="admintitle roboto-thin">
+                    Access Our Model
+                </div>
+                <div class="adminbtn">
+                    <a href="/admin"><button class="register">Click Me!</button></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Register -->
+        <section class="newsletter">
+            <div class="news container">
+                <div class="row">
+                    <!-- Left Container: Subscription -->
+                    <div class="col-md-6 containerL">
+                        <h2 class="title roboto-medium">Subscribe</h2>
+                        <p class="description roboto-light">Stay updated by subscribing to our newsletter.</p>
+                        <div class="form-box">
+                            <div class="input-main">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                                </svg>
+                                <input type="email" name="email" placeholder="Your Email">
+                            </div>
+                            <button class="submit roboto-medium" type="submit">Subscribe</button>
+                        </div>
+                    </div>
+
+                    <!-- Right Container: Model Access -->
+                    <div class="col-md-6 containerR">
+                        <h2 class="title roboto-medium">Open the Model</h2>
+                        <p class="description roboto-light">Use the model page to upload a file and review detection results.</p>
+                        <a href="/admin"><button class="register roboto-medium" type="button"> Go to Model </button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <section class="footer-section">
+            <div class="footer">
+                <!-- Social Media Links Row -->
+                <div class="row social-links">
+                    <div class="col text-center">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-youtube"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links Row -->
+                <div class="row links">
+                    <div class="col text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="#">Contact us</a></li>
+                            <li class="list-inline-item"><a href="#">Our Services</a></li>
+                            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="#">Terms & Conditions</a></li>
+                            <li class="list-inline-item"><a href="#">Career</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Copyright Row -->
+                <div class="row copyright">
+                    <div class="col text-center">
+                        <p>Batch No 15 © 2026 CCFD - All rights reserved || Designed By: 22BCE337 | 22BCE347</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    <!-- ................................script............................... -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../static/preloader.js"></script>
+
+    <!-- home section -->
+    <script>
+        const parallaxContainer = document.getElementById('parallax-container');
+        const parallaxImage = document.getElementById('parallax-image');
+
+        parallaxContainer.addEventListener('mousemove', (e) => {
+            const x = (parallaxContainer.offsetWidth / 2 - e.pageX + parallaxContainer.offsetLeft) / 30;
+            const y = (parallaxContainer.offsetHeight / 2 - e.pageY + parallaxContainer.offsetTop) / 30;
+            parallaxImage.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+
+    <!-- swiper js -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 10000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+    <!-- footer section -->
+    <script id="vertexShader" type="x-shader/x-vertex">
+        attribute vec4 position; void main() { gl_Position = vec4( position );}
+    </script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        precision mediump float; uniform vec2 u_resolution; uniform float u_time; vec2 random2(vec2 st){ st = vec2(dot(st, vec2(127.1, 311.7)), dot(st, vec2(269.5, 183.3))); return -1.0 + 2.0 * fract(sin(st) * 43758.5453123); } float noise(vec2 st) { vec2 i =
+        floor(st); vec2 f = fract(st); vec2 u = f * f * (3.0 - 2.0 * f); return mix(mix(dot(random2(i + vec2(0.0, 0.0)), f - vec2(0.0, 0.0)), dot(random2(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0)), u.x), mix(dot(random2(i + vec2(0.0, 1.0)), f - vec2(0.0,
+        1.0)), dot(random2(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0)), u.x), u.y); } void main() { vec2 uv = gl_FragCoord.xy / u_resolution; float waveOffset = 0.3; float waveCenter = 1.0; float waveFocus = 0.25; float waveSpeed = 2.0; float wMin = waveCenter
+        - waveFocus; float wMax = waveCenter + waveFocus; uv.x *= u_resolution.x / u_resolution.y; uv.x += 1787.74328; uv.y *= 2.0; float rn = noise(vec2(uv.x, u_time / waveSpeed)); float ry = uv.y - rn; float r = smoothstep(wMin, wMax, ry); float bn
+        = noise(vec2(uv.x, u_time / waveSpeed - waveOffset)); float by = uv.y - bn; float b = smoothstep(wMin, wMax, by); float gn = noise(vec2(uv.x, u_time / waveSpeed + waveOffset)); float gy = uv.y - gn; float g = smoothstep(wMin, wMax, gy); gl_FragColor
+        = vec4(r, b, g, 1.0); }
+    </script>
+    <script src="../static/app.js"></script>
+
+</body>
+
+</html>

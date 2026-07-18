@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Credit Card Fraud Detection</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #020617, #000);
+            color: #f8fafc;
+            padding-top: 80px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* CARDS */
+        .card {
+            background: linear-gradient(180deg, #020617, #0f172a);
+            border-radius: 18px;
+            border: 1px solid #1e293b;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transition: 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 80px rgba(37,99,235,0.4);
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #2563eb, #22d3ee);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 18px 18px 0 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 60px 0 30px;
+            background: linear-gradient(90deg, #2563eb, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* METRICS */
+        .metric-label { color: #93c5fd; font-weight: 600; }
+        .metric-accuracy { color: #22c55e; font-weight: 700; }
+        .metric-error { color: #ef4444; font-weight: 700; }
+
+        pre {
+            background: #020617;
+            color: #e5e7eb;
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            font-size: 0.9rem;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .graph-img {
+            border-radius: 14px;
+            transition: 0.4s;
+        }
+
+        .graph-img:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #2563eb, #22d3ee);
+            border: none;
+            font-weight: 700;
+        }
+
+        /* SUMMARY COLORS */
+        .bg-success {
+            background: linear-gradient(90deg, #16a34a, #22c55e) !important;
+        }
+
+        .bg-danger {
+            background: linear-gradient(90deg, #dc2626, #ef4444) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-light">
+    <div class="container">
+        <a class="navbar-brand fw-bold">Credit Card Fraud Detection</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="nav">
+            <ul class="navbar-nav gap-4">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/admin">Model</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container pb-5">
+
+    <!-- UPLOAD -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-upload me-2"></i> Machine Learning Prediction
+                </div>
+                <div class="card-body">
+                    <form action="/predict" method="post" enctype="multipart/form-data">
+                        <input class="form-control mb-3" type="file" name="file" required>
+                        <button class="btn btn-primary w-100">
+                            <i class="fa fa-rocket me-2"></i> Run Models
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="section-title">Results</h1>
+
+    <!-- SUMMARY -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="row g-4">
+
+                <!-- TOTAL -->
+                <div class="col-md-4 col-12">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <i class="fa fa-database"></i> Total
+                        </div>
+                        <div class="card-body">
+                            <h2 class="fw-bold text-info">{{ total_transactions }}</h2>
+                            <p class="text-muted">Transactions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NON FRAUD -->
+                <div class="col-md-4 col-6">
+                    <div class="card text-center">
+                        <div class="card-header bg-success">
+                            <i class="fa fa-check-circle"></i> Non-Fraud
+                        </div>
+                        <div class="card-body">
+                            <h2 class="fw-bold text-success">{{ non_fraudulent_count }}</h2>
+                            <p class="text-muted">Legitimate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FRAUD -->
+                <div class="col-md-4 col-6">
+                    <div class="card text-center">
+                        <div class="card-header bg-danger">
+                            <i class="fa fa-exclamation-triangle"></i> Fraud
+                        </div>
+                        <div class="card-body">
+                            <h2 class="fw-bold text-danger">{{ fraudulent_count }}</h2>
+                            <p class="text-muted">Fraudulent</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ACCURACY GRAPH -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Accuracy Comparison</div>
+                <div class="card-body text-center">
+                    <img src="{{ url_for('static', filename=accuracy_img) }}" class="img-fluid graph-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ERROR GRAPH -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Error Comparison</div>
+                <div class="card-body text-center">
+                    <img src="{{ url_for('static', filename=error_img) }}" class="img-fluid graph-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODEL RESULTS -->
+    {% for title, acc, err, report in [
+        ('Isolation Forest', iso_forest_accuracy, iso_forest_error, iso_forest_classification_report),
+        ('SVM', svm_accuracy, svm_error, svm_classification_report),
+        ('Logistic Regression', logistic_accuracy, logistic_error, logistic_classification_report)
+    ] %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">{{ title }}</div>
+                <div class="card-body">
+                    <p><span class="metric-label">Accuracy:</span>
+                        <span class="metric-accuracy">{{ acc }}</span>
+                    </p>
+                    <p><span class="metric-label">Error:</span>
+                        <span class="metric-error">{{ err }}</span>
+                    </p>
+                    <pre>{{ report }}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
