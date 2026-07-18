@@ -100,8 +100,11 @@ def predict():
     X = data.drop(columns=[target_col])
     y = data[target_col]
 
+    # Keep the existing split behavior for normal datasets, but fall back to an unstratified
+    # split when the uploaded CSV is too small or too imbalanced for stratification.
+    split_stratify = y if y.nunique() > 1 and y.value_counts().min() >= 2 else None
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, stratify=y, random_state=42
+        X, y, test_size=0.2, stratify=split_stratify, random_state=42
     )
 
     iso_model = IsolationForest(contamination=0.02, random_state=42, n_jobs=-1)
