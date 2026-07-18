@@ -1,5 +1,7 @@
 import pandas as pd
 import uuid
+import base64
+from io import BytesIO
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 # ================= ML =================
@@ -134,19 +136,24 @@ def predict():
     accuracies = [iso_accuracy, svm_accuracy, lr_accuracy]
     errors = [iso_error, svm_error, lr_error]
 
+    # Render the graphs in memory so deployment platforms with read-only filesystems do not fail.
+    accuracy_buffer = BytesIO()
     plt.figure(figsize=(8, 5))
     plt.bar(models, accuracies, color=['#2563eb', '#16a34a', '#f59e0b'])
     plt.ylim(0, 1)
-    accuracy_img = f"accuracy_{uuid.uuid4().hex}.png"
-    plt.savefig(f"static/{accuracy_img}")
+    plt.savefig(accuracy_buffer, format='png')
     plt.close()
+    accuracy_buffer.seek(0)
+    accuracy_img = f"data:image/png;base64,{base64.b64encode(accuracy_buffer.getvalue()).decode('utf-8')}"
 
+    error_buffer = BytesIO()
     plt.figure(figsize=(8, 5))
     plt.bar(models, errors, color=['#dc2626', '#7c3aed', '#0d9488'])
     plt.ylim(0, 1)
-    error_img = f"error_{uuid.uuid4().hex}.png"
-    plt.savefig(f"static/{error_img}")
+    plt.savefig(error_buffer, format='png')
     plt.close()
+    error_buffer.seek(0)
+    error_img = f"data:image/png;base64,{base64.b64encode(error_buffer.getvalue()).decode('utf-8')}"
 
     return render_template(
         'admin.html',
